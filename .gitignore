@@ -1,0 +1,18 @@
+# Ignore dependencies in all subfolders
+**/node_modules
+**/package-lock.json
+
+# Ignore build outputs
+**/dist
+**/build
+**/coverage
+
+# Ignore Hardhat/Blockchain junk
+**/artifacts
+**/cache
+**/typechain-types
+
+# Ignore Secrets (CRITICAL)
+**/.env
+**/.DS_Store
+.vscode/
