@@ -1,5 +1,14 @@
+/* 1. Tailwind v3 Directives - These must be at the very top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Global Styles & Modern Overrides */
 body {
   margin: 0;
+  /* Applying a subtle light gray background for a modern look */
+  @apply bg-gray-50 text-slate-900;
+  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +19,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* 3. Custom Utility for the "MUJ Brand" Blue (Optional) */
+.text-brand {
+  color: #0070f3;
+}
+
+.bg-brand {
+  background-color: #0070f3;
+}
+
+/* 4. Smooth transitions for your buttons and cards */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
