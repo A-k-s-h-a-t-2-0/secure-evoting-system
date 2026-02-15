@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/secure-evoting-system/static/css/main.e6c13ad2.css",
+    "main.js": "/secure-evoting-system/static/js/main.16f4c1ee.js",
+    "static/js/453.d7446e4a.chunk.js": "/secure-evoting-system/static/js/453.d7446e4a.chunk.js",
+    "index.html": "/secure-evoting-system/index.html",
+    "main.e6c13ad2.css.map": "/secure-evoting-system/static/css/main.e6c13ad2.css.map",
+    "main.16f4c1ee.js.map": "/secure-evoting-system/static/js/main.16f4c1ee.js.map",
+    "453.d7446e4a.chunk.js.map": "/secure-evoting-system/static/js/453.d7446e4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.16f4c1ee.js"
+  ]
+}
