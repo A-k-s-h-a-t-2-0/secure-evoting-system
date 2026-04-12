@@ -684,20 +684,20 @@ function App() {
                                  <div className="absolute inset-x-0 -bottom-20 h-40 bg-blue-500/20 dark:bg-amber-600/10 blur-3xl rounded-full group-hover:scale-150 transition-all duration-1000 ease-out z-0 delay-100"></div>
 
                                  {/* Inner Glass Plate */}
-                                 <div className="relative z-10 glass-panel bg-white/60 dark:bg-[#1a0b07]/60 backdrop-blur-xl h-full rounded-[1.8rem] flex flex-col justify-between overflow-hidden border border-white/40 dark:border-white/5 transition-colors duration-500 group-hover:bg-white/80 dark:group-hover:bg-[#251009]/80">
+                                 <div className="relative z-10 glass-panel bg-white/80 dark:bg-[#1a0b07]/60 backdrop-blur-xl h-full rounded-[1.8rem] flex flex-col justify-between overflow-hidden border border-slate-200/50 dark:border-white/5 transition-colors duration-500 group-hover:bg-white dark:group-hover:bg-[#251009]/80">
                                     <div className="p-8 pb-4 z-20 relative">
                                        {/* Aesthetic profile orb */}
-                                       <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 dark:from-orange-400 dark:to-red-600 text-white flex items-center justify-center text-3xl shadow-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 mb-6 overflow-hidden relative">
+                                       <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 dark:from-orange-500 dark:to-red-600 text-white flex items-center justify-center text-3xl shadow-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 mb-6 overflow-hidden relative">
                                           <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-0 border-none"></div>
                                           <span className="relative z-10">{['👨‍💼', '👩‍💼', '🧑‍🔬', '🚀', '🌟'][idx % 5]}</span>
                                        </div>
                                        
-                                       <h3 className="text-2xl font-display font-extrabold text-cyan-950 dark:text-orange-50 group-hover:text-ocean-DEFAULT dark:group-hover:text-flame-DEFAULT transition-colors duration-300">{candidate.name}</h3>
-                                       <p className="text-ocean-dark dark:text-orange-300/80 font-bold tracking-wide text-sm mt-3">{candidate.party}</p>
+                                       <h3 className="text-2xl font-display font-extrabold text-cyan-950 dark:text-orange-50 group-hover:text-blue-600 dark:group-hover:text-flame-DEFAULT transition-colors duration-300">{candidate.name}</h3>
+                                       <p className="text-blue-700 dark:text-orange-300/80 font-bold tracking-wide text-sm mt-3">{candidate.party}</p>
                                     </div>
                                     
-                                    <div className="p-5 mt-4 z-20 relative bg-white/30 dark:bg-black/20 border-t border-white/20 dark:border-white/5">
-                                       <button onClick={() => handleVote(candidate.id)} disabled={loading} className="relative w-full py-4 overflow-hidden rounded-xl bg-gradient-to-r from-ocean-DEFAULT to-blue-600 dark:from-flame-DEFAULT dark:to-red-600 text-white font-bold transition-all duration-300 hover:shadow-[0_10px_20px_rgba(14,165,233,0.4)] dark:hover:shadow-[0_10px_20px_rgba(249,115,22,0.4)] hover:-translate-y-1 disabled:opacity-50 disabled:translate-y-0 disabled:shadow-none group/btn border border-white/20">
+                                    <div className="p-5 mt-4 z-20 relative bg-slate-50 dark:bg-black/20 border-t border-slate-200 dark:border-white/5">
+                                       <button onClick={() => handleVote(candidate.id)} disabled={loading} className="relative w-full py-4 overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 dark:from-orange-600 dark:to-red-700 text-white font-bold transition-all duration-300 hover:shadow-[0_10px_20px_rgba(37,99,235,0.4)] dark:hover:shadow-[0_10px_20px_rgba(249,115,22,0.4)] hover:-translate-y-1 hover:from-blue-600 hover:to-blue-800 disabled:opacity-50 disabled:translate-y-0 disabled:shadow-none group/btn border border-blue-400/30">
                                           <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 z-0 pointer-events-none"></span>
                                           <span className="relative z-10 flex items-center justify-center gap-3">
                                              {loading ? 'Mining Block...' : (
