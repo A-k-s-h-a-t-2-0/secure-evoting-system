@@ -281,7 +281,7 @@ function VideoKYC({ regId, onVerifySuccess, onCancel, darkMode }) {
 
        <div className="flex gap-4 mt-8">
          <button onClick={onCancel} disabled={processing} className="px-6 py-3 rounded-xl bg-slate-200 dark:bg-[#200e07] text-slate-800 dark:text-orange-100 font-bold hover:bg-slate-300 dark:hover:bg-[#30160a] transition-all">Cancel</button>
-         <button onClick={kycStep === 'FACE' ? captureAndVerify : verifyIdUpload} disabled={processing || !modelsLoaded} className="px-8 py-3 rounded-xl bg-gradient-to-r from-ocean-DEFAULT to-blue-600 dark:from-flame-DEFAULT dark:to-red-600 text-white font-bold tracking-wide shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:translate-y-0 w-48 transition-all">
+         <button onClick={kycStep === 'FACE' ? captureAndVerify : verifyIdUpload} disabled={processing || !modelsLoaded} className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 dark:from-orange-600 dark:to-red-700 text-white font-bold tracking-wide shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:translate-y-0 w-48">
            {processing ? 'Processing...' : (kycStep === 'FACE' ? 'Capture Face' : 'Verify Upload')}
          </button>
        </div>
@@ -524,7 +524,7 @@ function App() {
                      <label htmlFor="regId" className="absolute text-sm text-cyan-600 dark:text-orange-300/60 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-ocean-DEFAULT dark:peer-focus:text-flame-DEFAULT font-semibold">Registration No.</label>
                   </div>
                   
-                  <button type="submit" disabled={loading} className="w-full py-4 bg-gradient-to-r from-ocean-DEFAULT to-ocean-dark dark:from-flame-DEFAULT dark:to-flame-dark text-white rounded-xl font-bold text-lg hover:from-ocean-light hover:to-ocean-DEFAULT dark:hover:from-flame-light dark:hover:to-flame-DEFAULT transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(14,165,233,0.3)] dark:shadow-[0_10px_20px_rgba(249,115,22,0.3)] relative overflow-hidden">
+                  <button type="submit" disabled={loading} className="w-full py-4 bg-gradient-to-r from-blue-500 to-blue-700 dark:from-orange-600 dark:to-red-700 text-white rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-800 dark:hover:from-orange-500 dark:hover:to-red-600 transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(37,99,235,0.3)] dark:shadow-[0_10px_20px_rgba(249,115,22,0.3)] relative overflow-hidden">
                      Proceed to Biometrics...
                   </button>
                </form>
