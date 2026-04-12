@@ -1,5 +1,7 @@
 # 🗳️ Secure Hybrid E-Voting System
 
+**🌐 Live Link:** [https://A-k-s-h-a-t-2-0.github.io/secure-evoting-system/](https://A-k-s-h-a-t-2-0.github.io/secure-evoting-system/)
+
 A blockchain-based e-voting application that uses **OCR (Optical Character Recognition)** for secure voter identity verification and **Ethereum Smart Contracts** for immutable vote recording.
 
 ## 🚀 Features
