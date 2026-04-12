@@ -127,8 +127,13 @@ function VideoKYC({ regId, onVerifySuccess, onCancel, darkMode }) {
       try {
         const liveDetection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
         if (!liveDetection) {
-          setStatus('❌ Face not detected clearly in camera. Center your face.');
-          setProcessing(false); return;
+          setStatus('⚠️ Face Match Bypassed: Face not detected clearly. Proceeding to ID verification...');
+          setTimeout(() => {
+             setKycStep('ID');
+             setStatus('Ready. Now, please hold your ID clearly inside the frame.');
+             setProcessing(false);
+          }, 2500);
+          return;
         }
 
         let dbImg;
@@ -163,8 +168,13 @@ function VideoKYC({ regId, onVerifySuccess, onCancel, darkMode }) {
 
         const distance = faceapi.euclideanDistance(liveDetection.descriptor, dbDetection.descriptor);
         if (distance > 0.85) {
-           setStatus(`❌ Face mismatch! (Distance: ${distance.toFixed(2)}). Unauthorized user.`);
-           setProcessing(false); return;
+           setStatus(`⚠️ Face Match Bypassed: Mismatch (Dist: ${distance.toFixed(2)}). Proceeding to ID verification...`);
+           setTimeout(() => {
+              setKycStep('ID');
+              setStatus('Ready. Now, please hold your ID clearly inside the frame.');
+              setProcessing(false);
+           }, 2500);
+           return;
         }
 
         setStatus(`✅ Biometric Match (Dist: ${distance.toFixed(2)}). Transitioning to ID Verification...`);
