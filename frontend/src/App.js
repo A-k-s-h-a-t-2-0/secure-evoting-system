@@ -545,7 +545,7 @@ function App() {
                      <NavItem id="results" label="Live Book" icon="🔥" />
                   </div>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-8">
                      {/* 10 MINUTE COUNTDOWN TIMER */}
                      <div className="flex items-center gap-3 glass-panel px-4 py-2 border-rose-400 dark:border-rose-900 border-2">
                         <span className="text-red-600 dark:text-red-400 animate-pulse text-xl">⏱️</span>
@@ -556,8 +556,9 @@ function App() {
                      </div>
                      
                      {/* LOGOUT BUTTON */}
-                     <button onClick={resetToGenesis} className="px-4 py-2 bg-red-100 hover:bg-red-200 dark:bg-red-900/40 dark:hover:bg-red-900/60 text-red-700 dark:text-red-400 border border-red-300 dark:border-red-800 rounded-xl font-bold transition-all shadow-sm flex items-center gap-2" title="Logout securely">
-                        <span>🚪</span> <span className="hidden sm:inline">Logout</span>
+                     <button onClick={resetToGenesis} className="px-5 py-2.5 glass-panel bg-red-500/10 hover:bg-red-500/20 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 border-2 border-red-400/50 dark:border-red-500/50 rounded-xl font-bold transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.4)] hover:shadow-[0_0_25px_rgba(239,68,68,0.8)] hover:-translate-y-1 flex items-center gap-2 backdrop-blur-md relative overflow-hidden group" title="Logout securely">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none z-[-1]"></span>
+                        <span className="group-hover:scale-110 transition-transform duration-300 z-10">🚪</span> <span className="hidden sm:inline tracking-wider z-10">Logout</span>
                      </button>
                   </div>
                </div>
