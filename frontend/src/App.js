@@ -375,6 +375,7 @@ function App() {
       });
       setElections(updatedElections);
       setVotedTxHash(txHash);
+      localStorage.setItem(`voted_${selectedCode}_${loginData.regId}`, 'true');
       setLoading(false);
       // Transition to VOTED stage — blocks re-voting
       setStage('VOTED');
@@ -557,8 +558,17 @@ function App() {
                      <div className="relative rounded-3xl overflow-hidden shadow-2xl glass-panel p-10 md:p-14 flex flex-col md:flex-row items-center justify-between border-t border-white/20">
                         <div className="max-w-xl">
                            <h2 className="text-4xl md:text-5xl font-display font-extrabold text-cyan-950 dark:text-white tracking-tight mb-4">{activeElection.org}</h2>
-                           <p className="text-cyan-800 dark:text-orange-100/80 text-lg mb-8 font-medium">Your cryptographic key is verified. The ledger is open for casting immutable decisions for {activeElection.title}. Note your strict timeframe.</p>
-                           <button onClick={() => setActiveTab('vote')} className="px-8 py-4 bg-ocean-DEFAULT dark:bg-flame-DEFAULT text-white rounded-xl font-bold text-lg hover:-translate-y-1 shadow-lg transition-transform">Proceed to Ballot &rarr;</button>
+                           {localStorage.getItem(`voted_${selectedCode}_${loginData.regId}`) === 'true' ? (
+                              <>
+                                 <p className="text-amber-700 dark:text-amber-400 text-lg mb-8 font-bold border-l-4 border-amber-500 pl-4 bg-amber-100/70 dark:bg-amber-900/30 py-3 rounded-r-xl">⚠️ You have already successfully cast your vote for this session. The ballot is now locked for your ID.</p>
+                                 <button onClick={() => setActiveTab('vote')} className="px-8 py-4 bg-slate-300 dark:bg-[#30160a] text-slate-500 dark:text-orange-200/50 rounded-xl font-bold text-lg cursor-not-allowed">Proceed to Ballot &rarr;</button>
+                              </>
+                           ) : (
+                              <>
+                                 <p className="text-cyan-800 dark:text-orange-100/80 text-lg mb-8 font-medium">Your cryptographic key is verified. The ledger is open for casting immutable decisions for {activeElection.title}. Note your strict timeframe.</p>
+                                 <button onClick={() => setActiveTab('vote')} className="px-8 py-4 bg-ocean-DEFAULT dark:bg-flame-DEFAULT text-white rounded-xl font-bold text-lg hover:-translate-y-1 shadow-lg transition-transform">Proceed to Ballot &rarr;</button>
+                              </>
+                           )}
                         </div>
                      </div>
 
@@ -578,21 +588,29 @@ function App() {
                         </div>
                      )}
                      
-                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {activeElection.candidates.map((candidate) => (
-                           <div key={candidate.id} className="group glass-panel rounded-3xl overflow-hidden hover:shadow-2xl hover:border-ocean-DEFAULT/50 transition-all bg-white/60 dark:bg-[#1a0b07]/60 flex flex-col">
-                              <div className="p-8 flex-1 flex flex-col justify-between">
-                                 <div>
-                                    <h3 className="text-2xl font-display font-bold text-cyan-950 dark:text-white">{candidate.name}</h3>
-                                    <p className="text-ocean-dark dark:text-flame-DEFAULT font-semibold mb-6">{candidate.party}</p>
+                     {localStorage.getItem(`voted_${selectedCode}_${loginData.regId}`) === 'true' ? (
+                        <div className="glass-panel p-10 rounded-3xl text-center border-2 border-amber-400/50 shadow-[0_0_30px_rgba(251,191,36,0.2)] bg-white/70 dark:bg-[#1a0b07]/70">
+                           <div className="text-6xl mb-4 text-amber-500">⚠️</div>
+                           <h2 className="text-3xl font-display font-bold text-amber-700 dark:text-amber-500 mb-2">Vote Already Cast</h2>
+                           <p className="text-cyan-800 dark:text-orange-100 text-lg font-medium">According to our securely verifiable local records, your cryptographic key has already authorized a transaction for this election. Multi-voting is strictly prohibited.</p>
+                        </div>
+                     ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                           {activeElection.candidates.map((candidate) => (
+                              <div key={candidate.id} className="group glass-panel rounded-3xl overflow-hidden hover:shadow-2xl hover:border-ocean-DEFAULT/50 transition-all bg-white/60 dark:bg-[#1a0b07]/60 flex flex-col">
+                                 <div className="p-8 flex-1 flex flex-col justify-between">
+                                    <div>
+                                       <h3 className="text-2xl font-display font-bold text-cyan-950 dark:text-white">{candidate.name}</h3>
+                                       <p className="text-ocean-dark dark:text-flame-DEFAULT font-semibold mb-6">{candidate.party}</p>
+                                    </div>
+                                    <button onClick={() => handleVote(candidate.id)} disabled={loading} className="w-full py-4 glass-panel bg-sky-50 dark:bg-[#200e07] hover:bg-ocean-DEFAULT hover:text-white dark:hover:bg-flame-DEFAULT font-bold transition-all shadow-md text-cyan-900 dark:text-orange-50 disabled:opacity-50">
+                                       {loading ? 'Mining...' : 'Authorize Vote'}
+                                    </button>
                                  </div>
-                                 <button onClick={() => handleVote(candidate.id)} disabled={loading} className="w-full py-4 glass-panel bg-sky-50 dark:bg-[#200e07] hover:bg-ocean-DEFAULT hover:text-white dark:hover:bg-flame-DEFAULT font-bold transition-all shadow-md text-cyan-900 dark:text-orange-50 disabled:opacity-50">
-                                    {loading ? 'Mining...' : 'Authorize Vote'}
-                                 </button>
                               </div>
-                           </div>
-                        ))}
-                     </div>
+                           ))}
+                        </div>
+                     )}
                   </div>
                )}
 
