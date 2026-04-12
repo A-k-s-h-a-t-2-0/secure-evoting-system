@@ -589,6 +589,75 @@ function App() {
                         <StatCard title="Transactions Synced" value={totalVotesCast} icon="⚡" gradientLight="from-cyan-400 to-emerald-500" gradientDark="from-orange-400 to-amber-600" live={true} />
                         <StatCard title="Block Status" value="Healthy" icon="📝" gradientLight="from-sky-400 to-ocean-DEFAULT" gradientDark="from-amber-500 to-orange-600" />
                      </div>
+                     
+                     {/* Candidate Pamphlets Section */}
+                     <div className="mt-20 pt-10 border-t border-cyan-200/50 dark:border-orange-900/30 animate-fade-in relative">
+                        <div className="flex items-center gap-6 mb-12">
+                           <div className="p-3 bg-white/60 dark:bg-[#1a0b07]/60 rounded-2xl shadow-lg border border-white/40 dark:border-white/10">
+                              <span className="text-3xl filter drop-shadow-md">📢</span>
+                           </div>
+                           <div>
+                              <h3 className="text-3xl md:text-4xl font-display font-bold text-cyan-950 dark:text-white tracking-tight">Campaign Manifestos</h3>
+                              <p className="text-cyan-700 dark:text-orange-200/60 font-medium mt-1">Review the decentralized pledges and agendas.</p>
+                           </div>
+                           <div className="hidden md:block h-[2px] flex-1 bg-gradient-to-r from-ocean-DEFAULT/40 to-transparent dark:from-flame-DEFAULT/40 ml-4"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                           {activeElection.candidates.map((candidate, idx) => (
+                              <div key={candidate.id} className="group relative glass-panel rounded-[2.5rem] overflow-hidden p-1.5 hover:shadow-[0_20px_60px_rgba(14,165,233,0.25)] dark:hover:shadow-[0_20px_60px_rgba(249,115,22,0.2)] transition-all duration-700 hover:-translate-y-2 cursor-pointer">
+                                 {/* Morphing Blur Backdrops */}
+                                 <div className="absolute -right-10 -top-10 w-48 h-48 bg-ocean-light/30 dark:bg-flame-light/20 rounded-full blur-3xl group-hover:scale-150 group-hover:bg-cyan-400/40 dark:group-hover:bg-red-500/30 transition-all duration-1000 ease-out z-0"></div>
+                                 <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-blue-500/20 dark:bg-amber-600/20 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000 ease-out z-0 delay-100"></div>
+                                 
+                                 {/* Glass Plate */}
+                                 <div className="relative z-10 glass-panel bg-white/50 dark:bg-black/50 backdrop-blur-2xl h-full rounded-[2.25rem] p-8 md:p-10 flex flex-col border border-white/40 dark:border-white/10 transition-colors duration-700 group-hover:bg-white/70 dark:group-hover:bg-[#1f0d06]/80 flex-1">
+                                    <div className="flex items-start justify-between mb-8">
+                                       <div className="z-20">
+                                          <h4 className="text-3xl font-display font-extrabold text-cyan-950 dark:text-orange-50 group-hover:text-ocean-DEFAULT dark:group-hover:text-flame-DEFAULT transition-colors duration-500 leading-tight">{candidate.name}</h4>
+                                          <span className="inline-block mt-3 px-4 py-1.5 bg-cyan-100/80 dark:bg-orange-950/80 text-cyan-800 dark:text-orange-300 rounded-xl text-sm font-bold tracking-wide shadow-sm border border-cyan-200/50 dark:border-orange-800/50">
+                                             {candidate.party}
+                                          </span>
+                                       </div>
+                                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-blue-600 dark:from-orange-400 dark:to-red-600 text-white flex items-center justify-center text-3xl md:text-4xl shadow-xl shrink-0 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 z-20 overflow-hidden relative">
+                                          <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-0"></div>
+                                          <span className="relative z-10">{['👨‍💼', '👩‍💼', '🧑‍🔬', '🚀', '🌟'][idx % 5]}</span>
+                                       </div>
+                                    </div>
+                                    
+                                    <div className="flex-1 relative z-20">
+                                       <p className="text-cyan-800 dark:text-orange-100/80 leading-relaxed font-medium md:text-lg">
+                                          Championing the core values of the {candidate.party}, {candidate.name} brings a renewed decentralized vision of integrity, modernization, and sustainable growth.
+                                       </p>
+                                       
+                                       <div className="mt-8 grid gap-4">
+                                          {[
+                                             "Transparent algorithmic governance", 
+                                             "Immutable community policies", 
+                                             "Scalable social infrastructure"
+                                          ].map((pt, i) => (
+                                             <div key={i} className="flex items-center gap-4 bg-white/40 dark:bg-white/5 p-3 rounded-2xl group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-colors duration-500">
+                                                <div className="w-8 h-8 rounded-full bg-cyan-100 dark:bg-orange-900/50 flex items-center justify-center shrink-0">
+                                                   <div className="w-2.5 h-2.5 rounded-full bg-ocean-light dark:bg-flame-light group-hover:scale-[1.8] group-hover:bg-ocean-DEFAULT dark:group-hover:bg-white transition-all duration-500"></div>
+                                                </div>
+                                                <span className="font-semibold text-cyan-900 dark:text-orange-200/90 text-sm md:text-base">{pt}</span>
+                                             </div>
+                                          ))}
+                                       </div>
+                                    </div>
+                                    
+                                    <div className="mt-10 pt-6 border-t-[1.5px] border-cyan-800/10 dark:border-white/10 flex justify-between items-center relative overflow-hidden transition-colors duration-500 group-hover:border-ocean-DEFAULT/30 dark:group-hover:border-flame-DEFAULT/30 z-20">
+                                       <span className="text-xs font-bold text-cyan-500 dark:text-orange-400/80 tracking-widest uppercase flex items-center gap-2">
+                                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                          Verified Cryptographic Profile
+                                       </span>
+                                       <button className="text-2xl opacity-40 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 filter drop-shadow-md" onClick={() => setActiveTab('vote')} title="Vote for this candidate">🗳️</button>
+                                    </div>
+                                 </div>
+                              </div>
+                           ))}
+                        </div>
+                     </div>
                   </div>
                )}
 
