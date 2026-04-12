@@ -293,7 +293,10 @@ function VideoKYC({ regId, onVerifySuccess, onCancel, darkMode }) {
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [stage, setStage] = useState('SEARCH'); // SEARCH, KYC, LOGIN, DASHBOARD, ENDED, VOTED
-  const [elections, setElections] = useState(MOCK_ELECTIONS);
+  const [elections, setElections] = useState(() => {
+    const saved = localStorage.getItem('demo_elections');
+    return saved ? JSON.parse(saved) : MOCK_ELECTIONS;
+  });
   const [selectedCode, setSelectedCode] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [loginData, setLoginData] = useState({ name: '', regId: '' });
@@ -353,7 +356,7 @@ function App() {
     setTimeLeft(600);
     setVoteStatus(null);
     setVotedTxHash('');
-    setElections(MOCK_ELECTIONS);
+    // Elections state is retained to show vote increments
   };
 
   const handleVote = (candidateId) => {
@@ -374,6 +377,7 @@ function App() {
          return elec;
       });
       setElections(updatedElections);
+      localStorage.setItem('demo_elections', JSON.stringify(updatedElections));
       setVotedTxHash(txHash);
       localStorage.setItem(`voted_${selectedCode}_${loginData.regId}`, 'true');
       setLoading(false);
