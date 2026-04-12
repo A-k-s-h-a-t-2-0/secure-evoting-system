@@ -469,7 +469,7 @@ function App() {
                   <img 
                      src={process.env.PUBLIC_URL + '/logo.png'} 
                      alt="BallotBridge Logo" 
-                     className="relative z-10 mx-auto h-[120px] md:h-[150px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(14,165,233,0.2)] animate-float"
+                     className="relative z-10 mx-auto h-[240px] md:h-[300px] w-auto object-contain drop-shadow-[0_10px_30px_rgba(255,255,255,0.2)] animate-float"
                   />
                </div>
                <p className="text-cyan-700 dark:text-orange-200/70 mt-4 font-medium text-lg">Select a parallel blockchain session to participate</p>
