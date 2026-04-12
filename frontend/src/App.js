@@ -465,8 +465,14 @@ function App() {
       {stage === 'SEARCH' && (
          <div className="relative z-10 w-full max-w-5xl mt-12 animate-fade-in flex flex-col items-center">
             <div className="text-center mb-10 w-full">
-               <div className="w-20 h-20 bg-gradient-to-br from-ocean-light to-ocean-dark dark:from-flame-light dark:to-flame-dark rounded-2xl mx-auto flex items-center justify-center text-4xl mb-6 shadow-xl animate-float">🌍</div>
-               <h1 className="text-5xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-950 to-blue-800 dark:from-white dark:to-orange-200">Global Voting Nexus</h1>
+               <div className="relative mx-auto w-full flex justify-center mb-4">
+                  <div className="absolute inset-0 bg-blue-500/20 dark:bg-orange-500/20 blur-[50px] rounded-full w-[200px] h-[100px] mx-auto top-1/2 -translate-y-1/2"></div>
+                  <img 
+                     src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW9lZTBnNWw2cXY4bnYzaTN5OHYzb2tzMzhtYW9yYXhmMHBzMDNsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kE3oPWb1X1oQy29w3q/giphy.gif" 
+                     alt="Animated Nexus" 
+                     className="relative z-10 mx-auto h-[120px] md:h-[150px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(14,165,233,0.5)] dark:drop-shadow-[0_10px_20px_rgba(249,115,22,0.4)] animate-float"
+                  />
+               </div>
                <p className="text-cyan-700 dark:text-orange-200/70 mt-4 font-medium text-lg">Select a parallel blockchain session to participate</p>
                
                <input type="text" placeholder="Search by Organization or Code..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="mt-8 w-full max-w-md px-6 py-4 rounded-xl border-2 border-cyan-200 dark:border-orange-900/50 bg-white/50 dark:bg-[#1f0d06]/50 text-cyan-950 dark:text-orange-50 focus:border-ocean-DEFAULT dark:focus:border-flame-DEFAULT outline-none transition-colors backdrop-blur-sm" />
