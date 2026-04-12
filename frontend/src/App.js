@@ -545,13 +545,20 @@ function App() {
                      <NavItem id="results" label="Live Book" icon="🔥" />
                   </div>
 
-                  {/* 10 MINUTE COUNTDOWN TIMER */}
-                  <div className="flex items-center gap-3 glass-panel px-4 py-2 border-rose-400 dark:border-rose-900 border-2">
-                     <span className="text-red-600 dark:text-red-400 animate-pulse text-xl">⏱️</span>
-                     <div className="flex flex-col">
-                        <span className="text-xs uppercase font-bold text-cyan-800 dark:text-orange-200/70 tracking-wider">Session Expires In</span>
-                        <span className="font-mono text-2xl font-bold text-red-600 dark:text-red-400 tracking-widest">{formatTime(timeLeft)}</span>
+                  <div className="flex items-center gap-4">
+                     {/* 10 MINUTE COUNTDOWN TIMER */}
+                     <div className="flex items-center gap-3 glass-panel px-4 py-2 border-rose-400 dark:border-rose-900 border-2">
+                        <span className="text-red-600 dark:text-red-400 animate-pulse text-xl">⏱️</span>
+                        <div className="flex flex-col">
+                           <span className="text-xs uppercase font-bold text-cyan-800 dark:text-orange-200/70 tracking-wider">Session Expires In</span>
+                           <span className="font-mono text-2xl font-bold text-red-600 dark:text-red-400 tracking-widest">{formatTime(timeLeft)}</span>
+                        </div>
                      </div>
+                     
+                     {/* LOGOUT BUTTON */}
+                     <button onClick={resetToGenesis} className="px-4 py-2 bg-red-100 hover:bg-red-200 dark:bg-red-900/40 dark:hover:bg-red-900/60 text-red-700 dark:text-red-400 border border-red-300 dark:border-red-800 rounded-xl font-bold transition-all shadow-sm flex items-center gap-2" title="Logout securely">
+                        <span>🚪</span> <span className="hidden sm:inline">Logout</span>
+                     </button>
                   </div>
                </div>
             </header>
