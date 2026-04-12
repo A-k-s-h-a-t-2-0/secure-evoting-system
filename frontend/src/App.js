@@ -465,12 +465,11 @@ function App() {
       {stage === 'SEARCH' && (
          <div className="relative z-10 w-full max-w-5xl mt-12 animate-fade-in flex flex-col items-center">
             <div className="text-center mb-10 w-full">
-               <div className="relative mx-auto w-full flex justify-center mb-4">
-                  <div className="absolute inset-0 bg-blue-500/20 dark:bg-orange-500/20 blur-[50px] rounded-full w-[200px] h-[100px] mx-auto top-1/2 -translate-y-1/2"></div>
+               <div className="relative mx-auto w-full flex justify-center mb-8">
                   <img 
-                     src="https://drive.google.com/uc?export=view&id=1sSwC3GNs7sn9qc0X6yNH4MWVFI3B9Tre" 
-                     alt="Animated Nexus" 
-                     className="relative z-10 mx-auto h-[120px] md:h-[150px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(14,165,233,0.5)] dark:drop-shadow-[0_10px_20px_rgba(249,115,22,0.4)] animate-float"
+                     src={process.env.PUBLIC_URL + '/logo.png'} 
+                     alt="BallotBridge Logo" 
+                     className="relative z-10 mx-auto h-[120px] md:h-[150px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(14,165,233,0.2)] animate-float"
                   />
                </div>
                <p className="text-cyan-700 dark:text-orange-200/70 mt-4 font-medium text-lg">Select a parallel blockchain session to participate</p>
