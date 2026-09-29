@@ -40,12 +40,21 @@ const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, contractJson.
 app.post("/vote", async (req, res) => {
   const { candidateId } = req.body;
   try {
-    // Changed to .castVote to match your Voting.sol contract
-    const tx = await contract.castVote(candidateId); 
+    // For the demo: We pick a random unlocked Hardhat account (0 to 19) 
+    // to simulate a unique voter's blockchain wallet.
+    const randomAccountIndex = Math.floor(Math.random() * 20);
+    const randomSigner = await provider.getSigner(randomAccountIndex);
+    
+    // Connect the contract to this new user's wallet
+    const userContract = contract.connect(randomSigner);
+
+    // Cast the vote
+    const tx = await userContract.castVote(candidateId); 
     await tx.wait();
+    
     res.json({ success: true, tx: tx.hash });
   } catch (err) {
-    // If user has already voted, contract.castVote will throw an error
+    // If THIS specific random account already voted, it will throw an error
     res.status(400).json({ success: false, error: err.reason || err.message });
   }
 });
