@@ -359,31 +359,47 @@ function App() {
     // Elections state is retained to show vote increments
   };
 
-  const handleVote = (candidateId) => {
+  const handleVote = async (candidateId) => {
     setLoading(true);
     setVoteStatus({ type: 'info', msg: '🔗 Establishing secure blockchain connection...' });
     
-    setTimeout(() => {
-      const txHash = `0x${Math.random().toString(16).substr(2, 40)}`;
-      const updatedElections = elections.map(elec => {
-         if (elec.code === selectedCode) {
-            return {
-               ...elec,
-               candidates: elec.candidates.map(c => 
-                 c.id === candidateId ? { ...c, votes: c.votes + 1 } : c
-               )
-            };
-         }
-         return elec;
-      });
-      setElections(updatedElections);
-      localStorage.setItem('demo_elections', JSON.stringify(updatedElections));
-      setVotedTxHash(txHash);
-      localStorage.setItem(`voted_${selectedCode}_${loginData.regId}`, 'true');
+    try {
+      // Send actual HTTP request to Node.js backend
+      const response = await axios.post('http://localhost:4000/vote', { candidateId });
+      
+      if (response.data.success) {
+        const txHash = response.data.tx;
+        
+        // Update local state to reflect the new vote immediately
+        const updatedElections = elections.map(elec => {
+           if (elec.code === selectedCode) {
+              return {
+                 ...elec,
+                 candidates: elec.candidates.map(c => 
+                   c.id === candidateId ? { ...c, votes: c.votes + 1 } : c
+                 )
+              };
+           }
+           return elec;
+        });
+        setElections(updatedElections);
+        localStorage.setItem('demo_elections', JSON.stringify(updatedElections));
+        
+        setVotedTxHash(txHash);
+        localStorage.setItem(`voted_${selectedCode}_${loginData.regId}`, 'true');
+        
+        // Transition to VOTED stage
+        setStage('VOTED');
+      } else {
+        setVoteStatus({ type: 'error', msg: `❌ Failed: ${response.data.error}` });
+      }
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error.response?.data?.error || error.message || "Server Error";
+      setVoteStatus({ type: 'error', msg: `❌ Blockchain Error: ${errorMessage}` });
+    } finally {
       setLoading(false);
-      // Transition to VOTED stage — blocks re-voting
-      setStage('VOTED');
-    }, 2000);
+    }
   };
 
   // Format Timer
